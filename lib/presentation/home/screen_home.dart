@@ -74,6 +74,12 @@ class ScreenHome extends StatelessWidget {
                     return '$imageAppendUrl${m.posterPath}';
                   }).toList();
 
+                  //top 10 tv shows
+                  final _top10TvShows = state.trendingTvList.map((t) {
+                    return '$imageAppendUrl${t.posterPath}';
+                  }).toList();
+                  _top10TvShows.shuffle();
+
                   return ListView(
                     children: [
                       BackgroundCard(),
@@ -85,7 +91,7 @@ class ScreenHome extends StatelessWidget {
                         title: "Trending Now",
                         posterList: _trending,
                       ),
-                      NumberTitleCard(),
+                      NumberTitleCard(postersList: _top10TvShows),
                       MainTitleCard(
                         title: "Tense Dramas",
                         posterList: _tenseDramas,
